@@ -1,0 +1,5 @@
+Todo List for this project:
+1. complete the logic for checking if the endpoint is present in the database, if it is present then check if the data of the endpoint is same as previous.
+2. if it is different or it is not present then show the user a message to add/update the endpoint.
+3. show all the websites and endpoints on the main website.
+4. change the schema of the website endpoint.
