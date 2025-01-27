@@ -2,6 +2,8 @@
 
 Automatically document APIs and streamline request testing in your React and Node.js applications with this powerful Chrome Extension.
 
+## Demo
+![Demo](https://github.com/mudittiwari/API-Documentation-Extension/blob/master/demo/demo.gif)
 ---
 
 ## 🌟 Features
