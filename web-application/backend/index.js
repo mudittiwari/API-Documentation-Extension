@@ -12,7 +12,10 @@ app.use(cors());
 
 connectDB();
 
-
+app.get("/", (req, res) => {
+    res.send("Welcome to the web application");
+}
+);
 app.use("/api/auth", authRouter);
 app.use("/api/website", websiteRouter);
 
