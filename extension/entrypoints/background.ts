@@ -114,7 +114,7 @@ async function addEndpointToDB(method: string, request: any, response: any, url:
   } catch (error) {
     console.error("Error adding endpoint to database:", error);
   }
-  finally{
+  finally {
     browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       if (tabs.length > 0 && tabs[0].id !== undefined) {
         browser.tabs.sendMessage(tabs[0].id, { action: "hideLoadingbar" },

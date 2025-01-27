@@ -29,7 +29,7 @@ export default defineContentScript({
         popup.style.padding = "20px";
         popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
         popup.style.width = "300px";
-    
+
         popup.innerHTML = `
             <h3 style="margin-bottom: 10px;color: #555;">New Endpoint Data Detected</h3>
             <p style="margin-bottom: 15px; font-size: 14px; color: #555;">URL: <strong>${message.url}</strong></p>
@@ -44,8 +44,8 @@ export default defineContentScript({
         document.body.appendChild(popup);
         document.getElementById("popup-form")?.addEventListener("submit", (e) => {
           e.preventDefault();
-          console.log("Form Data:", { "url":message.url });
-          chrome.runtime.sendMessage({ type: "endPointFormSubmitted", data: { "url":message.url,"method":message.method, request:message.request, response:message.response, headers:message.headers, params:message.params } });
+          console.log("Form Data:", { "url": message.url });
+          chrome.runtime.sendMessage({ type: "endPointFormSubmitted", data: { "url": message.url, "method": message.method, request: message.request, response: message.response, headers: message.headers, params: message.params } });
           document.body.removeChild(popup);
         });
         document.getElementById("close-popup")?.addEventListener("click", () => {
@@ -53,19 +53,21 @@ export default defineContentScript({
         });
       }
 
-      if(message.action === "showLoadingbar"){
+      if (message.action === "showLoadingbar") {
         showLoadingBar();
       }
-      if(message.action === "hideLoadingbar"){
+      if (message.action === "hideLoadingbar") {
         hideLoadingBar();
       }
-      if(message.action === "applyData"){
+      if (message.action === "applyData") {
         const parsedData = JSON.parse(message.data);
-        parsedData.forEach((item: { key: string; value: any; type:any }) => {
+        parsedData.forEach((item: { key: string; value: any; type: any }) => {
           const inputElement = document.getElementById(item.key);
           if (inputElement && inputElement instanceof HTMLInputElement) {
             console.log("data injectin");
             (inputElement as HTMLInputElement).value = item.value;
+            const event = new Event("input", { bubbles: true });
+            inputElement.dispatchEvent(event);
           }
         });
         showMessagePopup("Data Injected Successfully");
@@ -75,7 +77,7 @@ export default defineContentScript({
   },
 });
 
-const showMessagePopup = (message:string) => {
+const showMessagePopup = (message: string) => {
   if (document.getElementById("message-popup-overlay")) return;
   const overlay = document.createElement("div");
   overlay.id = "message-popup-overlay";
