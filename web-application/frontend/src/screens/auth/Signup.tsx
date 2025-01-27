@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import LoadingBar from '../../components/LoadingBar';
 import { useNavigate } from 'react-router-dom';
-import { Toaster } from "react-hot-toast";
 import { notifyError, notifySuccess } from '../../utils/Utils';
 
 const Signup: React.FC = () => {

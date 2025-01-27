@@ -90,7 +90,7 @@ const DocumentationPage: React.FC = () => {
       // Add headers
       doc.text('Headers:', margin, yPosition);
       yPosition += 10;
-      Object.entries(endpoint.headers).forEach(([key, value], i) => {
+      Object.entries(endpoint.headers).forEach(([key, value], _) => {
         if (yPosition > pageHeight - 20) {
           doc.addPage();
           yPosition = 20;

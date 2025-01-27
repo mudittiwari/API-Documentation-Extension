@@ -13,7 +13,6 @@ interface Website {
 
 const Home: React.FC = () => {
   const [websites, setWebsites] = useState<Website[]>([]);
-  const [error, setError] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -113,7 +112,6 @@ const Home: React.FC = () => {
             </div>
           </div>
           <h2 className="text-3xl font-semibold mb-8 text-center text-gray-800 mt-10">Your Websites</h2>
-          {error && <p className="text-red-500 text-center">{error}</p>}
           <div className="overflow-x-auto flex justify-center">
             <table className="w-[80%] bg-white border border-gray-300">
               <thead>
