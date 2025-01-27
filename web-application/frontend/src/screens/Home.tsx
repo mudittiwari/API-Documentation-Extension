@@ -23,7 +23,7 @@ const Home: React.FC = () => {
     const userId = localStorage.getItem("userId");
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/website/get-user-websites', {
+      const response = await axios.get('https://api-documentation-extension.onrender.com/api/website/get-user-websites', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
     const userId = localStorage.getItem("userId");
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/website/delete-website', {
+      const response = await axios.post('https://api-documentation-extension.onrender.com/api/website/delete-website', {
         websiteId: websiteId,
         userId: userId
       }, {

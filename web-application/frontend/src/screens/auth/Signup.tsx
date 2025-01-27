@@ -16,7 +16,7 @@ const Signup: React.FC = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+            const response = await axios.post('https://api-documentation-extension.onrender.com/api/auth/register', formData);
             notifySuccess(response.data.message);
             console.log('Signup response:', response.data);
             navigate("/login");

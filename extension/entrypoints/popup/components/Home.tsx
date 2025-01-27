@@ -35,7 +35,7 @@ const Home: React.FC = () => {
       const token = userParsed.data.token;
       const userId = userParsed.data.id;
       try {
-        const response = await axios.get('http://localhost:5000/api/website/get-user-websites', {
+        const response = await axios.get('https://api-documentation-extension.onrender.com/api/website/get-user-websites', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
       const userId = userParsed.data.id;
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/website/get-website-endpoints`, {
+        const response = await axios.get(`https://api-documentation-extension.onrender.com/api/website/get-website-endpoints`, {
           params: {
             id: websiteId
           },
@@ -111,7 +111,7 @@ const Home: React.FC = () => {
       const userId = userParsed.data.id;
       setLoading(true);
       try {
-        const response = await axios.post('http://localhost:5000/api/website/create-website', {
+        const response = await axios.post('https://api-documentation-extension.onrender.com/api/website/create-website', {
           websiteName: name,
           userId: userId
         }, {

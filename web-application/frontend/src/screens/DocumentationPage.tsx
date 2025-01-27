@@ -35,7 +35,7 @@ const DocumentationPage: React.FC = () => {
 
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/website/get-website-endpoints', {
+        const response = await axios.get('https://api-documentation-extension.onrender.com/api/website/get-website-endpoints', {
           params: { id: websiteId },
           headers: { Authorization: `Bearer ${token}` },
         });

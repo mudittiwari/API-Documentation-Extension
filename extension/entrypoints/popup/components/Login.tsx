@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     if (token) {
       setLoading(true);
       try {
-        const response = await axios.post('http://localhost:5000/api/auth/validate-token',{
+        const response = await axios.post('https://api-documentation-extension.onrender.com/api/auth/validate-token',{
           "token":token
         });
         if(response.status == 200){

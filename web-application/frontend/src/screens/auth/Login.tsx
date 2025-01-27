@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     setSuccess(null);
     setLoading(true);
     try {
-      const response = await axios.post('https://api-documentation-mudit.netlify.app/api/auth/login', formData);
+      const response = await axios.post('https://api-documentation-extension.onrender.com/api/auth/login', formData);
       notifySuccess(response.data.message);
       console.log('Login response:', response.data);
       localStorage.setItem("userId",response.data.userId);

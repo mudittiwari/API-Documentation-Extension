@@ -94,7 +94,7 @@ async function addEndpointToDB(method: string, request: any, response: any, url:
       response: response || null,
       params: params || null
     };
-    const responseFromServer = await fetch("http://localhost:5000/api/website/add-endpoint", {
+    const responseFromServer = await fetch("https://api-documentation-extension.onrender.com/api/website/add-endpoint", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
