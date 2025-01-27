@@ -3,8 +3,6 @@ import axios from 'axios';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { notifyError } from '../utils/Utils';
 import Header from '../components/Header';
-import { jsPDF } from 'jspdf';
-// import html2pdf from 'html2pdf.js';
 
 interface Endpoint {
   url: string;
@@ -60,74 +58,6 @@ const DocumentationPage: React.FC = () => {
     }
   }, [websiteId, navigate]);
 
-  // Function to download PDF
-  const downloadPdf = () => {
-    const doc = new jsPDF();
-    let yPosition = 20; // Starting y position for the first page
-    const margin = 10; // Left and right margin for text
-    const pageHeight = doc.internal.pageSize.height; // Get the height of the page
-  
-    // Add the title
-    doc.setFontSize(16);
-    doc.text(`Documentation for ${websiteName}`, margin, yPosition);
-    yPosition += 10;
-  
-    // Add endpoints content to the PDF
-    endpoints.forEach((endpoint, index) => {
-      // Check if we need to add a new page
-      if (yPosition > pageHeight - 50) {
-        doc.addPage();
-        yPosition = 20; // Reset to the top of the next page
-      }
-  
-      doc.setFontSize(12);
-      doc.text(`Endpoint ${index + 1}: ${endpoint.url}`, margin, yPosition);
-      yPosition += 10;
-  
-      doc.text(`Method: ${endpoint.method}`, margin, yPosition);
-      yPosition += 10;
-  
-      // Add headers
-      doc.text('Headers:', margin, yPosition);
-      yPosition += 10;
-      Object.entries(endpoint.headers).forEach(([key, value], _) => {
-        if (yPosition > pageHeight - 20) {
-          doc.addPage();
-          yPosition = 20;
-        }
-        doc.text(`${key}: ${value}`, margin + 10, yPosition);
-        yPosition += 10;
-      });
-  
-      // Add Query Params
-      doc.text('Query Params:', margin, yPosition);
-      yPosition += 10;
-      doc.text(JSON.stringify(endpoint.params || 'N/A', null, 2), margin + 10, yPosition);
-      yPosition += 20;
-  
-      // Add Request Body
-      doc.text('Request Body:', margin, yPosition);
-      yPosition += 10;
-      doc.text(JSON.stringify(endpoint.requestBody || 'N/A', null, 2), margin + 10, yPosition);
-      yPosition += 20;
-  
-      // Add Response
-      doc.text('Response:', margin, yPosition);
-      yPosition += 10;
-      doc.text(JSON.stringify(endpoint.response || 'N/A', null, 2), margin + 10, yPosition);
-      yPosition += 20;
-  
-      // Check if we need a new page after content for each endpoint
-      if (yPosition > pageHeight - 20) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    });
-  
-    // Save the generated PDF
-    doc.save('documentation.pdf');
-  };
-  
 
   return (
     <div className="min-h-screen bg-white">
@@ -141,12 +71,6 @@ const DocumentationPage: React.FC = () => {
         {error && <p className="text-red-500 text-center">{error}</p>}
         {endpoints.length > 0 ? (
           <>
-            <button
-              onClick={downloadPdf}
-              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-            >
-              Download Documentation as PDF
-            </button>
             <ul className="space-y-6">
               {endpoints.map((endpoint, index) => (
                 <li key={index} className="border border-gray-300 rounded-lg shadow-md overflow-auto max-h-[500px]">
